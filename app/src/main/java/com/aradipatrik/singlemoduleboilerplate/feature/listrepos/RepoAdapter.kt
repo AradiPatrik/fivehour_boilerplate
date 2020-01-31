@@ -1,4 +1,4 @@
-package com.aradipatrik.singlemoduleboilerplate.feature.listfoos
+package com.aradipatrik.singlemoduleboilerplate.feature.listrepos
 
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aradipatrik.singlemoduleboilerplate.R
 import com.aradipatrik.singlemoduleboilerplate.data.local.LocalRepo
-import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.RepoAdapter.ViewHolder
+import com.aradipatrik.singlemoduleboilerplate.feature.listrepos.RepoAdapter.ViewHolder
 import com.aradipatrik.singlemoduleboilerplate.util.inflate
-import kotlinx.android.synthetic.main.list_item_foo.view.*
+import kotlinx.android.synthetic.main.list_item_repo.view.*
 import javax.inject.Inject
 
 object LocalRepoItemCallback : DiffUtil.ItemCallback<LocalRepo>() {
@@ -20,9 +20,10 @@ object LocalRepoItemCallback : DiffUtil.ItemCallback<LocalRepo>() {
     override fun areContentsTheSame(oldItem: LocalRepo, newItem: LocalRepo) = oldItem == newItem
 }
 
-class RepoAdapter @Inject constructor() : ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
+class RepoAdapter @Inject constructor() :
+    ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(parent.inflate(R.layout.list_item_foo))
+        ViewHolder(parent.inflate(R.layout.list_item_repo))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(currentList[position])
@@ -36,9 +37,8 @@ class RepoAdapter @Inject constructor() : ListAdapter<LocalRepo, ViewHolder>(Loc
             textView.text = repo.name
             imageView.setImageResource(
                 if (repo.isFavorited) {
-                        R.drawable.ic_favorite_black
-                    }
-                else {
+                    R.drawable.ic_favorite_black
+                } else {
                     R.drawable.ic_favorite_border_black
                 }
             )

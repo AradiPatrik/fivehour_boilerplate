@@ -14,7 +14,7 @@ object RetrofitModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideFooService(): RepoService = Retrofit.Builder()
+    fun providerRepoService(): RepoService = Retrofit.Builder()
         .baseUrl("https://api.github.com/")
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))

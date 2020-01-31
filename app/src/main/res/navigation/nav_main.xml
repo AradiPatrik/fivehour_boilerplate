@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_main"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/fragment_list_repos">
 
     <fragment
         android:id="@+id/fragment_list_repos"
-        android:name="com.aradipatrik.singlemoduleboilerplate.feature.listfoos.ListReposFragment"
-        android:label="ListReposFragment" />
+        android:name="com.aradipatrik.singlemoduleboilerplate.feature.listrepos.ListReposFragment"
+        android:label="ListReposFragment"
+        tools:layout="@layout/fragment_list_repos"/>
     <fragment
         android:id="@+id/fragment_list_favorite_repos"
-        android:name="com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos.FavoriteReposFragment"
-        android:label="FavoriteReposFragment" />
+        android:name="com.aradipatrik.singlemoduleboilerplate.feature.favoriterepos.FavoriteReposFragment"
+        android:label="FavoriteReposFragment"
+        tools:layout="@layout/fragment_favorite_repos"/>
 </navigation>

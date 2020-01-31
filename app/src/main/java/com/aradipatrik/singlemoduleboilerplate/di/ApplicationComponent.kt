@@ -7,7 +7,6 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.AndroidInjectionModule
-import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
@@ -16,6 +15,7 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppAssistedModule::class,
+        RoomModule::class,
         RetrofitModule::class,
         ActivityFragmentBuilder::class
     ]

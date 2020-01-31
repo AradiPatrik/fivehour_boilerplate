@@ -1,4 +1,4 @@
-package com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos
+package com.aradipatrik.singlemoduleboilerplate.feature.favoriterepos
 
 import com.airbnb.mvrx.*
 import com.aradipatrik.singlemoduleboilerplate.MvRxViewModel
@@ -34,7 +34,12 @@ class FavoriteReposViewModel @AssistedInject constructor(
         }
     }
 
-    fun fetchFavorites() {
+    init {
+        logStateChanges()
+        fetchFavorites()
+    }
+
+    private fun fetchFavorites() {
         repoRepository.getFavoriteRepos()
             .subscribeOn(Schedulers.io())
             .execute {

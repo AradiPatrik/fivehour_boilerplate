@@ -1,4 +1,4 @@
-package com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos
+package com.aradipatrik.singlemoduleboilerplate.feature.favoriterepos
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aradipatrik.singlemoduleboilerplate.R
 import com.aradipatrik.singlemoduleboilerplate.data.local.LocalRepo
-import com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos.FavoriteRepoAdapter.ViewHolder
-import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.LocalRepoItemCallback
+import com.aradipatrik.singlemoduleboilerplate.feature.favoriterepos.FavoriteRepoAdapter.ViewHolder
+import com.aradipatrik.singlemoduleboilerplate.feature.listrepos.LocalRepoItemCallback
 import com.aradipatrik.singlemoduleboilerplate.util.inflate
-import kotlinx.android.synthetic.main.list_item_favorite_foo.view.*
+import kotlinx.android.synthetic.main.list_item_favorite_repo.view.*
+import javax.inject.Inject
 
-class FavoriteRepoAdapter : ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
+class FavoriteRepoAdapter @Inject constructor() : ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
-        parent.inflate(R.layout.list_item_favorite_foo)
+        parent.inflate(R.layout.list_item_favorite_repo)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =

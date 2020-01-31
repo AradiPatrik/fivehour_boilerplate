@@ -1,4 +1,4 @@
-package com.aradipatrik.singlemoduleboilerplate.feature.listfoos
+package com.aradipatrik.singlemoduleboilerplate.feature.listrepos
 
 import com.airbnb.mvrx.*
 import com.aradipatrik.singlemoduleboilerplate.MvRxViewModel
@@ -35,6 +35,7 @@ class ListReposViewModel @AssistedInject constructor(
     }
 
     init {
+        logStateChanges()
         fetchRepos()
     }
 

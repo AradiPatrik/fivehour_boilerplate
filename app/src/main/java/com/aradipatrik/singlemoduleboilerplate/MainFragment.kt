@@ -15,6 +15,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val navController =
             Navigation.findNavController(view.findViewById(R.id.content_nav_host_fragment))
         bottom_navigation_view.setupWithNavController(navController)
-        toolbar.setupWithNavController(navController, AppBarConfiguration(navController.graph))
+        toolbar.setupWithNavController(navController, AppBarConfiguration(setOf(R.id.fragment_list_favorite_repos, R.id.fragment_list_repos)))
     }
 }
