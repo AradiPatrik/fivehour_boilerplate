@@ -6,13 +6,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aradipatrik.singlemoduleboilerplate.R
-import com.aradipatrik.singlemoduleboilerplate.data.local.LocalFoo
-import com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos.FavoriteFooAdapter.ViewHolder
-import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.LocalFooItemCallback
+import com.aradipatrik.singlemoduleboilerplate.data.local.LocalRepo
+import com.aradipatrik.singlemoduleboilerplate.feature.favoritefoos.FavoriteRepoAdapter.ViewHolder
+import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.LocalRepoItemCallback
 import com.aradipatrik.singlemoduleboilerplate.util.inflate
 import kotlinx.android.synthetic.main.list_item_favorite_foo.view.*
 
-class FavoriteFooAdapter : ListAdapter<LocalFoo, ViewHolder>(LocalFooItemCallback) {
+class FavoriteRepoAdapter : ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(
         parent.inflate(R.layout.list_item_favorite_foo)
     )
@@ -23,8 +23,8 @@ class FavoriteFooAdapter : ListAdapter<LocalFoo, ViewHolder>(LocalFooItemCallbac
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val textView: TextView = itemView.foo_text
 
-        fun bind(localFoo: LocalFoo) {
-            textView.text = localFoo.displayableAttribute
+        fun bind(localRepo: LocalRepo) {
+            textView.text = localRepo.name
         }
     }
 }

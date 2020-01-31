@@ -1,6 +1,6 @@
 package com.aradipatrik.singlemoduleboilerplate.di
 
-import com.aradipatrik.singlemoduleboilerplate.data.remote.FooService
+import com.aradipatrik.singlemoduleboilerplate.data.remote.RepoService
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -14,10 +14,10 @@ object RetrofitModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideFooService(): FooService = Retrofit.Builder()
-        .baseUrl("https://foo.com/apiv1/")
+    fun provideFooService(): RepoService = Retrofit.Builder()
+        .baseUrl("https://api.github.com/")
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
-        .create(FooService::class.java)
+        .create(RepoService::class.java)
 }

@@ -7,10 +7,13 @@ import com.airbnb.mvrx.withState
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class FavoriteFoosFragment : BaseMvRxFragment() {
+class FavoriteReposFragment : BaseMvRxFragment() {
     @Inject
-    lateinit var viewModelFactory: FavoriteFoosViewModel.Factory
-    private val viewModel: FavoriteFoosViewModel by fragmentViewModel()
+    lateinit var viewModelFactory: FavoriteReposViewModel.Factory
+    private val viewModel: FavoriteReposViewModel by fragmentViewModel()
+
+    @Inject
+    lateinit var adapter: FavoriteRepoAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -18,6 +21,7 @@ class FavoriteFoosFragment : BaseMvRxFragment() {
     }
 
     override fun invalidate() = withState(viewModel) { state ->
+        adapter.submitList(state.favoriteRepos)
     }
 
 }

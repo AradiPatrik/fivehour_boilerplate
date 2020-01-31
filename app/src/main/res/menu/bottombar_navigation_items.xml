@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/fragment_foo_list"
+    <item android:id="@+id/fragment_list_repos"
         android:icon="@drawable/ic_dashboard_black"
         android:title="@string/dashboard"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/fragment_favorite_foos"
+    <item android:id="@+id/fragment_list_favorite_repos"
         android:icon="@drawable/ic_favorite_black"
         android:title="@string/favorites"
         app:showAsAction="ifRoom" />

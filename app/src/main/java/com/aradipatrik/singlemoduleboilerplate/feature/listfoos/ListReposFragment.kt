@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.airbnb.mvrx.BaseMvRxFragment
-import com.airbnb.mvrx.DeliveryMode
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
 import com.aradipatrik.singlemoduleboilerplate.R
@@ -12,17 +11,17 @@ import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_listfoos.*
 import javax.inject.Inject
 
-class ListFoosFragment : BaseMvRxFragment(R.layout.fragment_listfoos) {
+class ListReposFragment : BaseMvRxFragment(R.layout.fragment_listfoos) {
     @Inject
-    lateinit var viewModelFactory: ListFoosViewModel.Factory
-    private val viewModel: ListFoosViewModel by fragmentViewModel()
+    lateinit var viewModelFactory: ListReposViewModel.Factory
+    private val viewModel: ListReposViewModel by fragmentViewModel()
 
     @Inject
-    lateinit var adapter: FooAdapter
+    lateinit var adapter: RepoAdapter
 
     override fun onAttach(context: Context) {
-        super.onAttach(context)
         AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,6 +29,6 @@ class ListFoosFragment : BaseMvRxFragment(R.layout.fragment_listfoos) {
     }
 
     override fun invalidate() = withState(viewModel) { state ->
-        adapter.submitList(state.fooList)
+        adapter.submitList(state.repoList)
     }
 }

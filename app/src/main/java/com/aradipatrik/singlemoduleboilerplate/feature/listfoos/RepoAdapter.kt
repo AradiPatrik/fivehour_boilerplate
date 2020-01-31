@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.aradipatrik.singlemoduleboilerplate.R
-import com.aradipatrik.singlemoduleboilerplate.data.local.LocalFoo
-import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.FooAdapter.ViewHolder
+import com.aradipatrik.singlemoduleboilerplate.data.local.LocalRepo
+import com.aradipatrik.singlemoduleboilerplate.feature.listfoos.RepoAdapter.ViewHolder
 import com.aradipatrik.singlemoduleboilerplate.util.inflate
 import kotlinx.android.synthetic.main.list_item_foo.view.*
 import javax.inject.Inject
 
-object LocalFooItemCallback : DiffUtil.ItemCallback<LocalFoo>() {
-    override fun areItemsTheSame(oldItem: LocalFoo, newItem: LocalFoo) = oldItem.id == newItem.id
+object LocalRepoItemCallback : DiffUtil.ItemCallback<LocalRepo>() {
+    override fun areItemsTheSame(oldItem: LocalRepo, newItem: LocalRepo) = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: LocalFoo, newItem: LocalFoo) = oldItem == newItem
+    override fun areContentsTheSame(oldItem: LocalRepo, newItem: LocalRepo) = oldItem == newItem
 }
 
-class FooAdapter @Inject constructor() : ListAdapter<LocalFoo, ViewHolder>(LocalFooItemCallback) {
+class RepoAdapter @Inject constructor() : ListAdapter<LocalRepo, ViewHolder>(LocalRepoItemCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(parent.inflate(R.layout.list_item_foo))
 
@@ -32,10 +32,10 @@ class FooAdapter @Inject constructor() : ListAdapter<LocalFoo, ViewHolder>(Local
         private val textView: TextView = view.foo_text
         private val imageView: ImageView = view.heart_icon
 
-        fun bind(foo: LocalFoo) {
-            textView.text = foo.displayableAttribute
+        fun bind(repo: LocalRepo) {
+            textView.text = repo.name
             imageView.setImageResource(
-                if (foo.isFavorited) {
+                if (repo.isFavorited) {
                         R.drawable.ic_favorite_black
                     }
                 else {
