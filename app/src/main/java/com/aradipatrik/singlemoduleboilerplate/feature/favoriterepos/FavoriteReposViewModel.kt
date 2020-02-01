@@ -12,7 +12,7 @@ data class FavoriteReposState(
     val favoriteRepos: List<LocalRepo> = emptyList(),
     val favoriteFoosRequest: Async<List<LocalRepo>> = Uninitialized,
     val syncRequest: Async<Unit> = Uninitialized
-): MvRxState
+) : MvRxState
 
 class FavoriteReposViewModel @AssistedInject constructor(
     @Assisted state: FavoriteReposState,
@@ -24,12 +24,13 @@ class FavoriteReposViewModel @AssistedInject constructor(
         fun create(state: FavoriteReposState): FavoriteReposViewModel
     }
 
-    companion object: MvRxViewModelFactory<FavoriteReposViewModel, FavoriteReposState> {
+    companion object : MvRxViewModelFactory<FavoriteReposViewModel, FavoriteReposState> {
         override fun create(
             viewModelContext: ViewModelContext,
             state: FavoriteReposState
         ): FavoriteReposViewModel? {
-            val fragment = (viewModelContext as FragmentViewModelContext).fragment<FavoriteReposFragment>()
+            val fragment =
+                (viewModelContext as FragmentViewModelContext).fragment<FavoriteReposFragment>()
             return fragment.viewModelFactory.create(state)
         }
     }
@@ -51,5 +52,11 @@ class FavoriteReposViewModel @AssistedInject constructor(
             .execute {
                 copy(syncRequest = it)
             }
+    }
+
+    fun removeFromFavorites(repo: LocalRepo) {
+        repoRepository.setFavorite(repo, false)
+            .subscribeOn(Schedulers.io())
+            .execute { this }
     }
 }

@@ -29,7 +29,8 @@ class ListReposViewModel @AssistedInject constructor(
             viewModelContext: ViewModelContext,
             state: ListReposState
         ): ListReposViewModel? {
-            val fragment = (viewModelContext as FragmentViewModelContext).fragment<ListReposFragment>()
+            val fragment =
+                (viewModelContext as FragmentViewModelContext).fragment<ListReposFragment>()
             return fragment.viewModelFactory.create(state)
         }
     }
@@ -39,26 +40,29 @@ class ListReposViewModel @AssistedInject constructor(
         fetchRepos()
     }
 
-    private fun fetchRepos() {
-        withState {
-            repoRepository
-                .getAllRepos()
-                .subscribeOn(Schedulers.io())
-                .execute {
-                    copy(
-                        repoList = it() ?: repoList,
-                        repoListRequest = it
-                    )
-                }
+    private fun fetchRepos() = withState {
+        repoRepository
+            .getAllRepos()
+            .subscribeOn(Schedulers.io())
+            .execute {
+                copy(
+                    repoList = it() ?: repoList,
+                    repoListRequest = it
+                )
+            }
 
-            repoRepository.syncRepos()
-                .subscribeOn(Schedulers.io())
-                .execute {
-                    copy(
-                        syncRequest = it
-                    )
-                }
-        }
+        repoRepository.syncRepos()
+            .subscribeOn(Schedulers.io())
+            .execute {
+                copy(
+                    syncRequest = it
+                )
+            }
     }
 
+    fun toggleFavorite(repo: LocalRepo) {
+        repoRepository.setFavorite(repo, !repo.isFavorited)
+            .subscribeOn(Schedulers.io())
+            .execute { this }
+    }
 }

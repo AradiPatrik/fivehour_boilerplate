@@ -2,6 +2,7 @@ package com.aradipatrik.singlemoduleboilerplate.data.remote
 
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 
 interface RepoService {

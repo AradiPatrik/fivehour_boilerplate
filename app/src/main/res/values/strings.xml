@@ -2,4 +2,6 @@
     <string name="app_name">SingleModuleBoilerplate</string>
     <string name="dashboard">Dashboard</string>
     <string name="favorites">Favorites</string>
+    <string name="like">Like</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

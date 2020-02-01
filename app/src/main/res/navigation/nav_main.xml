@@ -8,10 +8,19 @@
         android:id="@+id/fragment_list_repos"
         android:name="com.aradipatrik.singlemoduleboilerplate.feature.listrepos.ListReposFragment"
         android:label="ListReposFragment"
-        tools:layout="@layout/fragment_list_repos"/>
+        tools:layout="@layout/fragment_list_repos">
+        <action
+            android:id="@+id/action_fragment_list_repos_to_repoDetailsFragment"
+            app:destination="@id/repoDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_list_favorite_repos"
         android:name="com.aradipatrik.singlemoduleboilerplate.feature.favoriterepos.FavoriteReposFragment"
         android:label="FavoriteReposFragment"
         tools:layout="@layout/fragment_favorite_repos"/>
+    <fragment
+        android:id="@+id/repoDetailsFragment"
+        android:name="com.aradipatrik.singlemoduleboilerplate.feature.repodetails.RepoDetailsFragment"
+        android:label="RepoDetailsFragment"
+        tools:layout="@layout/fragment_repodetails"/>
 </navigation>

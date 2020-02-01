@@ -8,25 +8,32 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class RepoRepository @Inject constructor(
-    private val repoRemote: RepoService,
-    private val repoLocal: RepoDao
+    private val remoteRepoDataStore: RepoService,
+    private val localRepoDataStore: RepoDao
 ) {
     fun getAllRepos(): Observable<List<LocalRepo>> =
-        repoLocal
+        localRepoDataStore
             .getRepos()
             .toObservable()
             .distinctUntilChanged()
 
     fun getFavoriteRepos(): Observable<List<LocalRepo>> =
-        repoLocal
+        localRepoDataStore
             .getFavoriteRepos()
             .toObservable()
             .distinctUntilChanged()
 
+    fun setFavorite(repo: LocalRepo, isFavorite: Boolean) =
+        localRepoDataStore.updateRepos(repo.copy(isFavorited = isFavorite))
+
+    fun getRepoFromLocal(id: Int) =
+        localRepoDataStore.getRepo(id)
+            .toObservable()
+
     fun syncRepos(): Completable =
-        repoRemote
+        remoteRepoDataStore
             .getRepos("aradipatrik")
             .flatMapCompletable {
-                repoLocal.insertAll(it.map(LocalRepo.Companion::fromRemote))
+                localRepoDataStore.insertAll(it.map(LocalRepo.Companion::fromRemote))
             }
 }
