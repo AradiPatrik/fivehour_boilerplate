@@ -9,10 +9,8 @@ import android.view.*
 import androidx.annotation.IdRes
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.airbnb.mvrx.BaseMvRxFragment
-import com.airbnb.mvrx.MvRx
-import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
+import com.airbnb.mvrx.*
+import com.aradipatrik.singlemoduleboilerplate.MainViewModel
 import com.aradipatrik.singlemoduleboilerplate.R
 import com.aradipatrik.singlemoduleboilerplate.feature.listrepos.ListRepoViewEvent.DayNightMenuClick
 import com.aradipatrik.singlemoduleboilerplate.feature.repodetails.RepoDetailsArgs
@@ -28,6 +26,7 @@ class ListReposFragment : BaseMvRxFragment(R.layout.fragment_list_repos) {
     @Inject
     lateinit var viewModelFactory: ListReposViewModel.Factory
     private val viewModel: ListReposViewModel by fragmentViewModel()
+    private val mainViewModel: MainViewModel by activityViewModel()
 
     @Inject
     lateinit var adapter: RepoAdapter
@@ -77,7 +76,7 @@ class ListReposFragment : BaseMvRxFragment(R.layout.fragment_list_repos) {
             RepoDetailsArgs(id = event.repo.id)
         )
         is ListRepoViewEvent.LikeClick -> viewModel.toggleFavorite(event.repo)
-        DayNightMenuClick -> TODO()
+        DayNightMenuClick -> mainViewModel.toggleDarkMode()
     }
 
     override fun onPause() {

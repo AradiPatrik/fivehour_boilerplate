@@ -13,6 +13,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
+    lateinit var viewModelFactory: MainViewModel.Factory
+
+    @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
